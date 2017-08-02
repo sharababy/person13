@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ListView, StyleSheet, Text } from 'react-native';
+import StateRow from './StateRow'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,61 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#394648',
     paddingLeft:10,
   },
-  rowContainer:{
-    flex: 1,
-    flexDirection:'column',
-  },
-  row:{
-    flex: 1,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    paddingTop:15,
-    paddingBottom:15,
-  },
-  rowElement1:{
-    color:'#000',
-    flex: 1,
-    fontSize:16,
-    textAlign:'left',
-    textAlignVertical:'center'
-  },
-  rowElement2:{
-    flex: 1,
-    fontSize:13,
-    textAlign:'left',
-    textAlignVertical:'center',
-    //borderWidth:1,
-  },
-  rowElement3:{
-    flex: 1,
-    fontSize:11,
-    textAlign:'left',
-    textAlignVertical:'center',
-    color:'#878787',
-    //borderWidth:1,
-  },
-  box1:{
-    flexDirection:'column',
-    marginLeft:15,
-    //width:100,
-    //borderWidth:1,
-  },
-  box2:{
-    width:70,
-    flexDirection:'column',
-    justifyContent:'center',
-    //borderWidth:1,
-    
-  },
-  divider:{
-    flex:1,
-    borderTopWidth:1,
-    borderTopColor:'#eee',
-    marginLeft:10,
-    marginRight:10,
-    
-  }
-
+  
 });
 
 class StatusList extends React.Component {
@@ -140,19 +87,7 @@ class StatusList extends React.Component {
           dataSource={this.state.dataSource}
           renderRow={(data) =>
            (
-            <View style={styles.rowContainer}>
-              <View style={styles.row} >
-                <View style={styles.box1}>
-                  <Text style={styles.rowElement1}>{data.name}</Text>
-                  <Text style={styles.rowElement3}>as of {data.time} , {data.date}</Text>
-                </View>
-                <View style={styles.box2}>
-                  <Text style={styles.rowElement2}>{data.status}</Text>
-                </View>
-                
-              </View>
-              <View style={styles.divider}></View>
-            </View>
+            <StateRow data={data} />
           )
           }
         />
