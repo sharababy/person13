@@ -51,3 +51,4 @@ AppRegistry.registerComponent('person13', () => person13);
 
 
 //concept of circles , personal status
+// notify only selected state changes

@@ -61,16 +61,54 @@ const styles = StyleSheet.create({
 });
 
 class StateRow extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      data: null,
+      key:this.props.data.key,
+    };
+  }
+
+
+  componentWillMount() {
+    this.makeRemoteRequest();
+  }
+
+  makeRemoteRequest = () => {
+
+    const { page, seed } = this.state;
+    const url = 'https://cdn.rawgit.com/sharababy/imagecamp/9ac605fe/public/state'+this.state.key;
+    this.setState({ loading: true });
+    console.log(url)
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          data: res,
+          loading: false,
+        });
+        console.log(res)
+      })
+      .catch(error => {
+        this.setState({loading: false });
+        console.log(error)
+      });
+  };
+
+
   render() {
     return (
             <View style={styles.rowContainer}>
               <View style={styles.row} >
                 <View style={styles.box1}>
                   <Text style={styles.rowElement1}>{this.props.data.name}</Text>
-                  <Text style={styles.rowElement3}>as of {this.props.data.time} , {this.props.data.date}</Text>
+                  {  this.state.data!==null ? <Text style={styles.rowElement3}>as of {this.state.data.time} , {this.state.data.date}</Text> : <Text style={styles.rowElement3}>Loading...</Text> }
                 </View>
                 <View style={styles.box2}>
-                  <Text style={styles.rowElement2}>{this.props.data.status}</Text>
+                  {  this.state.data!==null ? <Text style={styles.rowElement2}>{this.state.data.status}</Text> : <Text style={styles.rowElement3}>Loading...</Text> }
                 </View>
                 
               </View>

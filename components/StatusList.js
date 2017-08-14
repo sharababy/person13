@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text } from 'react-native';
+import { List,View, FlatList, StyleSheet, Text } from 'react-native';
 import StateRow from './StateRow'
 
 const styles = StyleSheet.create({
@@ -28,69 +28,61 @@ class StatusList extends React.Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
+      data: [
           {
+            key:0,
             name:"Vedant Bassi",
-            status:"Alive",
-            date:"2 August 2017",
-            time:"10:39 am",
           },
           {
+            key:1,
             name:"Jeffery Jacob",
-            status:"Sad",
-            date:"1 August 2017",
-            time:"1:12 am",
           },
           {
+            key:2,
             name:"Akshay Kumar",
-            status:"In Class",
-            date:"30 July 2017",
-            time:"9:23 pm",
           },
           {
+            key:3,
             name:"Adithya Prakash",
-            status:"Travelling",
-            date:"2 August 2017",
-            time:"6:50 pm",
           },
           {
+            key:4,
             name:"Viraj Sonatkar",
-            status:"in My Room",
-            date:"31 July 2017",
-            time:"11:09 pm",
           },
           {
+            key:5,
             name:"Gowtham Munukutla",
-            status:"Working",
-            date:"28 July 2017",
-            time:"6:01 am",
           },
           {
+            key:6,
             name:"Dharmesh Harsha",
-            status:"Music Club",
-            date:"2 August 2017",
-            time:"7:34 pm",
+          },
+          {
+            key:7,
+            name:"Sachin Putta",
           },
           
 
-        ]),
+        ],
     };
   }
   render() {
     return (
       <View style={styles.outerContainer}>
         <Text style={styles.pageHeaderText}> States of Being </Text>
-        <ListView
+        
+        <FlatList
           style={styles.container}
-          dataSource={this.state.dataSource}
-          renderRow={(data) =>
+          data={this.state.data}
+      
+          renderItem={({item}) =>
            (
-            <StateRow data={data} />
+            <StateRow data={item} />
           )
           }
         />
+
       </View>
     );
   }
