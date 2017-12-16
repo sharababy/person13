@@ -31,12 +31,8 @@ class StatusList extends React.Component {
     this.state = {
       data: [
           {
-            key:0,
+            key:4,
             name:"Vedant Bassi",
-          },
-          {
-            key:1,
-            name:"Jeffery Jacob",
           },
           {
             key:2,
@@ -44,24 +40,28 @@ class StatusList extends React.Component {
           },
           {
             key:3,
+            name:"Gowtham Munukutla",
+          }/*,
+          {
+            key:9,
             name:"Adithya Prakash",
           },
           {
-            key:4,
+            key:5,
             name:"Viraj Sonatkar",
           },
           {
-            key:5,
-            name:"Gowtham Munukutla",
-          },
-          {
             key:6,
-            name:"Dharmesh Harsha",
+            name:"Jeffery Jacob",
           },
           {
             key:7,
-            name:"Sachin Putta",
+            name:"Dharmesh Harsha",
           },
+          {
+            key:8,
+            name:"Sachin Putta",
+          },*/
           
 
         ],

@@ -80,11 +80,21 @@ class StateRow extends React.Component {
   makeRemoteRequest = () => {
 
     const { page, seed } = this.state;
-    const url = 'https://cdn.rawgit.com/sharababy/imagecamp/9ac605fe/public/state'+this.state.key;
+    const url = 'https://p13s.herokuapp.com';
     this.setState({ loading: true });
     console.log(url)
-    fetch(url)
-      .then(res => res.json())
+    
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        u: this.state.key,
+        v: 'get'
+      })
+    }).then(res => res.json())  
       .then(res => {
         this.setState({
           data: res,
@@ -105,10 +115,10 @@ class StateRow extends React.Component {
               <View style={styles.row} >
                 <View style={styles.box1}>
                   <Text style={styles.rowElement1}>{this.props.data.name}</Text>
-                  {  this.state.data!==null ? <Text style={styles.rowElement3}>as of {this.state.data.time} , {this.state.data.date}</Text> : <Text style={styles.rowElement3}>Loading...</Text> }
+                  {  this.state.data!==null ? <Text style={styles.rowElement3}>as of {this.state.data.savedAt} , {this.state.data.savedOn}</Text> : <Text style={styles.rowElement3}>Loading...</Text> }
                 </View>
                 <View style={styles.box2}>
-                  {  this.state.data!==null ? <Text style={styles.rowElement2}>{this.state.data.status}</Text> : <Text style={styles.rowElement3}>Loading...</Text> }
+                  {  this.state.data!==null ? <Text style={styles.rowElement2}>{this.state.data.body}</Text> : <Text style={styles.rowElement3}>Loading...</Text> }
                 </View>
                 
               </View>

@@ -48,7 +48,7 @@ AppRegistry.registerComponent('person13', () => person13);
 
 
 //adb shell input keyevent 82
-
+// react-native run-android 
 
 //concept of circles , personal status
 // notify only selected state changes
